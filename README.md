@@ -15,7 +15,7 @@ The `Unicorn Playground` provides a way to prototype and debug `Unicorn` compone
 # ]
 # ///
 
-from django_unicorn import UnicornView
+from django_unicorn.components import UnicornView
 from django_unicorn_playground import UnicornPlayground
 
 class CounterView(UnicornView):
@@ -32,8 +32,6 @@ class CounterView(UnicornView):
     
     def subtract(self):
         count -= 1
-    
-    
 
 UnicornPlayground.runserver(component=CounterView)
 ```
