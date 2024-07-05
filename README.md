@@ -1,4 +1,4 @@
-# django-unicorn-playground
+# django-unicorn-playground 🦄🛝
 
 The `Unicorn Playground` provides a way to prototype and debug `Unicorn` components without creating a complete Django application.
 
