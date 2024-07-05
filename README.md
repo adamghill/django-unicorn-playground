@@ -7,7 +7,7 @@ The `Unicorn Playground` provides a way to prototype and debug `Unicorn` compone
 1. Create a new file called `app.py`
 1. Add the following code to `app.py`
 
-```
+```python
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
