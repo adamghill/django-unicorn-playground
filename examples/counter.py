@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#   "django_unicorn_playground@file:///Users/adam/Source/adamghill/django-unicorn-playground/"
+#   "django_unicorn_playground @ file:///Users/adam/Source/adamghill/django-unicorn-playground"
 # ]
 # ///
 
