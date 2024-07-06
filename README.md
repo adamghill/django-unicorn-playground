@@ -4,6 +4,7 @@ The `Unicorn Playground` provides a way to prototype and debug `Unicorn` compone
 
 ## How to use
 
+1. Install [`pipx`](https://pipx.pypa.io/latest/installation/)
 1. Create a new file called `app.py`
 1. Add the following code to `app.py`
 
@@ -36,7 +37,7 @@ class CounterView(UnicornView):
 UnicornPlayground.runserver(component=CounterView)
 ```
 
-3. `python3 app.py`
+3. `pipx run app.py`
 
 ## Acknowledgments
 
