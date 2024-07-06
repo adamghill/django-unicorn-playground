@@ -34,7 +34,7 @@ class CounterView(UnicornView):
     def subtract(self):
         count -= 1
 
-UnicornPlayground.runserver(component=CounterView)
+UnicornPlayground(CounterView).runserver()
 ```
 
 3. `pipx run app.py`

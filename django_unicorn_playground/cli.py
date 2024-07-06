@@ -7,8 +7,9 @@ from django_unicorn_playground.components import get_component_class_ast, get_co
 
 @click.command()
 @click.argument("component", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option("--port", type=int, default=8000, help="Port for localhost")
 @click.version_option()
-def cli(component: Path):
+def cli(component: Path, port: int):
     component_path = component
 
     component_class = get_component_class_ast(component_path)
@@ -17,4 +18,4 @@ def cli(component: Path):
     # Import here to avoid partially initialized module
     from django_unicorn_playground import UnicornPlayground
 
-    UnicornPlayground().runserver(component_class)
+    UnicornPlayground(component_class=component_class).runserver(port=port)
