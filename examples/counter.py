@@ -26,4 +26,8 @@ class CounterView(UnicornView):
         self.count -= 1
 
 
+#  TODO: Should checking for __main__ be required? It feels ugly, but it is pretty standard Python.
+# if __name__ == "__main__":
+#     UnicornPlayground().runserver(CounterView)
+
 UnicornPlayground().runserver(CounterView)

@@ -2,7 +2,7 @@
 
 The `Unicorn Playground` provides a way to prototype and debug `Unicorn` components without creating a complete Django application.
 
-## How to use
+## Standalone Script
 
 1. Install [`pipx`](https://pipx.pypa.io/latest/installation/)
 1. Create a new file called `app.py`
@@ -38,6 +38,36 @@ UnicornPlayground.runserver(component=CounterView)
 ```
 
 3. `pipx run app.py`
+4. Go to https://localhost:8000
+
+## Installable CLI
+
+Installing `django-unicorn-playground` provides a CLI that can be used to run components.
+
+1. `pipx install django-unicorn-playground`
+1. Create `counter.py` with the following code:
+
+```python
+from django_unicorn.components import UnicornView
+
+class CounterView(UnicornView):
+    count: int
+
+    template_html = """
+<span>{{ count }}</span>
+<button unicorn:click="add">+</button>
+<button unicorn:click="subtract">-</button>
+"""
+
+    def add(self):
+        count += 1
+    
+    def subtract(self):
+        count -= 1
+```
+
+3. `unicorn counter.py`
+4. Go to https://localhost:8000
 
 ## Example components
 
@@ -46,6 +76,8 @@ There are a few example components in the `examples` directory.
 They can be run with something like `pipx run --no-cache examples/counter.py`.
 
 ## Local development
+
+### Inline script metadata
 
 Using the inline script metadata with `pipx` seems a little quirky and I could not get editable installs working reliably. I also tried `hatch run` which had it's own issues. Not sure if there are other approaches.
 
@@ -57,6 +89,13 @@ However, I have created a `just` command to make re-building for local dev _slig
 
 1. [Install just](https://just.systems/man/en/chapter_4.html)
 1. `just serve examples/counter.py`
+
+### CLI
+
+Working locally with the CLI isn't quite as complicated.
+
+1. `poetry install`
+1. `poetry run unicorn examples/counter.py`
 
 ## Acknowledgments
 
