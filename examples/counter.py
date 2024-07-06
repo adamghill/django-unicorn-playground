@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#   "django_unicorn_playground @ file:///Users/adam/Source/adamghill/django-unicorn-playground"
+#   "django_unicorn_playground @ file:///Users/adam/Source/adamghill/django-unicorn-playground/dist/django_unicorn_playground-0.1.0-py3-none-any.whl"
 # ]
 # ///
 
@@ -26,4 +26,4 @@ class CounterView(UnicornView):
         self.count -= 1
 
 
-UnicornPlayground().runserver(component=CounterView)
+UnicornPlayground().runserver(CounterView)

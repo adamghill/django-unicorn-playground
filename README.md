@@ -45,6 +45,19 @@ There are a few example components in the `examples` directory.
 
 They can be run with something like `pipx run --no-cache examples/counter.py`.
 
+## Local development
+
+Using the inline script metadata with `pipx` seems a little quirky and I could not get editable installs working reliably. I also tried `hatch run` which had it's own issues. Not sure if there are other approaches.
+
+As far as I can tell, the best approach is to use an absolute file path like `"django_unicorn_playground @ file:///Users/adam/Source/adamghill/django-unicorn-playground/dist/django_unicorn_playground-0.1.0-py3-none-any.whl"` as a dependency, and rebuilding and re-running the script without any caching like this: `poetry build && pipx run --no-cache examples/counter.py` any time you make a code change.
+
+You will need to update the component's dependency so it points to the path on your machine.
+
+However, I have created a `just` command to make re-building for local dev _slightly_ less painful.
+
+1. [Install just](https://just.systems/man/en/chapter_4.html)
+1. `just serve examples/counter.py`
+
 ## Acknowledgments
 
 - [phoenix_playground](https://github.com/phoenix-playground/phoenix_playground)
