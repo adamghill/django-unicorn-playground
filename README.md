@@ -39,6 +39,12 @@ UnicornPlayground.runserver(component=CounterView)
 
 3. `pipx run app.py`
 
+## Example components
+
+There are a few example components in the `examples` directory.
+
+They can be run with something like `pipx run --no-cache examples/counter.py`.
+
 ## Acknowledgments
 
 - [phoenix_playground](https://github.com/phoenix-playground/phoenix_playground)
