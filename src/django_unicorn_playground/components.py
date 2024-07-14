@@ -37,6 +37,7 @@ def get_component_class_import(component_path: Path) -> type:
 
     # Get the UnicornView subclass in the component file
     unicorn_view_subclasses = [c[1] for c in class_members if issubclass(c[1], UnicornView) and c[1] is not UnicornView]
+
     assert unicorn_view_subclasses, "No subclass of UnicornView found"
     unicorn_view_subclass = unicorn_view_subclasses[0]
 

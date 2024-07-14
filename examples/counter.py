@@ -11,23 +11,14 @@ from django_unicorn_playground import UnicornPlayground
 
 
 class CounterView(UnicornView):
-    count: int
+    count: int = 0
 
-    template_html = """
-<span>{{ count }}</span>
-<button unicorn:click="add">+</button>
-<button unicorn:click="subtract">-</button>
-"""
-
-    def add(self):
+    def increment(self):
         self.count += 1
 
-    def subtract(self):
+    def decrement(self):
         self.count -= 1
 
 
-#  TODO: Should checking for __main__ be required? It feels ugly, but it is pretty standard Python.
-# if __name__ == "__main__":
-#     UnicornPlayground(CounterView).runserver()
-
-UnicornPlayground(CounterView).runserver()
+if __name__ == "__main__":
+    UnicornPlayground(__name__).runserver()

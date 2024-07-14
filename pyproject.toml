@@ -9,6 +9,9 @@ repository = "https://github.com/adamghill/django-unicorn-playground/"
 homepage = "https://github.com/adamghill/django-unicorn-playground/"
 documentation = "https://github.com/adamghill/django-unicorn-playground/"
 keywords = ["django", "python", "css", "html"]
+packages = [
+  { include = "django_unicorn_playground", from = "src" }
+]
 
 [tool.poetry.urls]
 "Funding" = "https://github.com/sponsors/adamghill"
@@ -94,7 +97,8 @@ ban-relative-imports = "all"
 "tests/**/*" = ["PLR2004", "S101", "TID252", "ARG001"]
 
 [tool.pytest.ini_options]
-addopts = "--quiet --failed-first -p no:warnings --benchmark-skip"
+pythonpath = ["src"]
+addopts = "--quiet --failed-first -p no:warnings"
 testpaths = [
     "tests"
 ]

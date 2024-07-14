@@ -59,6 +59,10 @@ serve *ARGS:
   just build
   pipx run --no-cache {{ ARGS }}
 
+# Serve
+run *ARGS:
+  poetry run unicorn {{ ARGS }}
+
 # Build the package
 build:
   poetry build
