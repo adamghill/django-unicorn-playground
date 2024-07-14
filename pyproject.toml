@@ -20,6 +20,7 @@ packages = [
 python = "^3.10"
 click = "^8.1.7"
 django-unicorn = "*"
+typeguard = "^4.3.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8"
