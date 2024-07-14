@@ -21,4 +21,4 @@ class CounterView(UnicornView):
 
 
 if __name__ == "__main__":
-    UnicornPlayground(__name__).runserver()
+    UnicornPlayground(__file__).runserver()

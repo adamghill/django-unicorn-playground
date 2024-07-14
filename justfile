@@ -54,12 +54,12 @@ dev:
   just type
   just coverage
 
-# Serve
+# Serve the component via pipx
 serve *ARGS:
   just build
   pipx run --no-cache {{ ARGS }}
 
-# Serve
+# Serve the component via the `unicorn` package
 run *ARGS:
   poetry run unicorn {{ ARGS }}
 

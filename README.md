@@ -20,21 +20,26 @@ from django_unicorn.components import UnicornView
 from django_unicorn_playground import UnicornPlayground
 
 class CounterView(UnicornView):
-    count: int
+    template_html = """<div>
+    <div>
+        Count: {{ count }}
+    </div>
 
-    template_html = """
-<span>{{ count }}</span>
-<button unicorn:click="add">+</button>
-<button unicorn:click="subtract">-</button>
+    <button unicorn:click="increment">+</button>
+    <button unicorn:click="decrement">-</button>
+</div>
 """
 
-    def add(self):
+    count: int
+
+    def increment(self):
         count += 1
     
-    def subtract(self):
+    def decrement(self):
         count -= 1
 
-UnicornPlayground(CounterView).runserver()
+if __name__ == "__main__":
+    UnicornPlayground(__file__).runserver()
 ```
 
 3. `pipx run app.py`
@@ -51,18 +56,22 @@ Installing `django-unicorn-playground` provides a CLI that can be used to run co
 from django_unicorn.components import UnicornView
 
 class CounterView(UnicornView):
-    count: int
+    template_html = """<div>
+    <div>
+        Count: {{ count }}
+    </div>
 
-    template_html = """
-<span>{{ count }}</span>
-<button unicorn:click="add">+</button>
-<button unicorn:click="subtract">-</button>
+    <button unicorn:click="increment">+</button>
+    <button unicorn:click="decrement">-</button>
+</div>
 """
 
-    def add(self):
+    count: int
+
+    def increment(self):
         count += 1
     
-    def subtract(self):
+    def decrement(self):
         count -= 1
 ```
 

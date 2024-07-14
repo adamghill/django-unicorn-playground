@@ -10,11 +10,11 @@ def index(request):
         return render(request, "index.html")
     except TemplateDoesNotExist:
         template_code = """{% extends "base.html" %}
-    {% load unicorn %}
+{% load unicorn %}
 
-    {% block content %}
-    {% unicorn 'counter' %}
-    {% endblock content %}
+{% block content %}
+{% unicorn 'counter' %}
+{% endblock content %}
     """
 
         return Template(template_code).render(context=Context({}))

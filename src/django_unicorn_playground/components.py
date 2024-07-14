@@ -27,7 +27,7 @@ def get_component_class_ast(component_path: Path) -> type:
 
 
 def get_component_class_import(component_path: Path) -> type:
-    """Downside of this is it runs the component Python file which can have unintended consequences."""
+    """Create the component class based on the path of the component."""
 
     module = component_path.name.replace(component_path.suffix, "")
 
