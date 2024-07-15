@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any
+from typing import Any
 from uuid import uuid4
 
 from django_unicorn.components import UnicornView
