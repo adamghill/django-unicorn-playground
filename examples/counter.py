@@ -11,6 +11,18 @@ from django_unicorn_playground import UnicornPlayground
 
 
 class CounterView(UnicornView):
+    template_html = """<div>
+    <strong>template_html</strong><br />
+
+    <button unicorn:click="increment">Increment +</button>
+    <button unicorn:click="decrement">Decrement -</button>
+
+    <div>
+    {{ count }}
+    </div>
+</div>
+"""
+
     count: int = 0
 
     def increment(self):
