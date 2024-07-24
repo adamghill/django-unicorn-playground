@@ -17,11 +17,11 @@ class UnicornPlayground:
         self,
         component_path: Path | str,
         *,
-        template_dir: str | None = None,
+        template_dir: Path | str | None = None,
         **django_settings,
     ):
         """
-        Initialize a new playground.
+        Initialize a new django-unicorn playground.
 
         Args:
             component_path: Where the component lives on the filesystem.
@@ -32,13 +32,17 @@ class UnicornPlayground:
         component_classes = get_component_classes(component_path)
 
         # Get default Django settings
-        settings = get_settings(template_dir, component_classes)
+        self.settings = get_settings(template_dir, component_classes)
 
-        # Override default settings with any init kwargs
-        settings.update(**django_settings)
+        # Override default settings with init kwargs
+        self.settings.update(**django_settings)
 
-        # Set Django settings
-        conf.settings.configure(**settings)
+        self.configure()
+
+    def configure(self):
+        """Configures Django with the settings."""
+
+        conf.settings.configure(**self.settings)
 
     def runserver(self, *, port: int = 8000):
         """Starts the dev server.

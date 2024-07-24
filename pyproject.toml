@@ -17,10 +17,11 @@ packages = [
 "Funding" = "https://github.com/sponsors/adamghill"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 click = "^8.1.7"
-django-unicorn = "*"
-typeguard = "^4.3.0"
+django-unicorn = { path = "../django-unicorn/", develop = true }
+typeguard = "^4.3"
+rich-click = "^1.8"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8"

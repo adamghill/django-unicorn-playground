@@ -1,3 +1,5 @@
+from os import getcwd
+from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
@@ -21,19 +23,24 @@ def _get_components_setting(component_classes: list[type[UnicornView]]) -> dict[
 
 
 @typechecked
-def _get_templates_setting(template_dir: str | None) -> list[dict[str, Any]]:
+def _get_templates_setting(template_dir: Path | str | None = None) -> list[dict[str, Any]]:
     """Gets the `TEMPLATES` Django settings."""
 
-    template_dirs = []
+    template_dirs = [getcwd()]
 
     if template_dir:
-        template_dirs.append(template_dir)
+        template_dirs.append(str(template_dir))
 
     templates = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",
             "DIRS": template_dirs,
             "APP_DIRS": True,
+            "OPTIONS": {
+                "builtins": [
+                    "django_unicorn.templatetags.unicorn",
+                ],
+            },
         },
     ]
 
@@ -41,7 +48,7 @@ def _get_templates_setting(template_dir: str | None) -> list[dict[str, Any]]:
 
 
 @typechecked
-def get_settings(template_dir: str | None, component_classes: list[type[UnicornView]]) -> dict[str, Any]:
+def get_settings(template_dir: Path | str | None, component_classes: list[type[UnicornView]]) -> dict[str, Any]:
     return {
         "ALLOWED_HOSTS": "*",
         "ROOT_URLCONF": urls,

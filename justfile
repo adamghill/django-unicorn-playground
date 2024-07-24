@@ -46,7 +46,7 @@ alias t := test
 
 # Run coverage on the code
 coverage:
-  -poetry run pytest --cov=refreshcss
+  -poetry run pytest --cov-report term-missing --cov=src/django_unicorn_playground
 
 # Run all the dev things
 dev:
