@@ -1,6 +1,6 @@
 # django-unicorn-playground 🦄🛝
 
-The `Unicorn Playground` provides a way to prototype and debug `Unicorn` components without creating a complete Django application. It can either be run as a standalone script or by installing the library.
+The `Unicorn Playground` provides a way to prototype and debug [`Unicorn`](https://www.django-unicorn.com) components without creating a complete Django application. It can either be run as a standalone script or by installing the library.
 
 ## Standalone Script
 
