@@ -100,6 +100,8 @@ class CounterView(UnicornView):
 
 ### Arguments
 
+<img width="762" alt="Screenshot 2024-07-27 at 3 35 06 PM" src="https://github.com/user-attachments/assets/d8809662-7375-4754-a680-1a963e3f487b">
+
 #### component
 
 The path to the component. Required.
