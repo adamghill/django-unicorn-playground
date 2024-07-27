@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from django import conf
+from django.conf import settings as django_conf_settings
 from django.core.management import execute_from_command_line
 from typeguard import typechecked
 
@@ -42,7 +42,7 @@ class UnicornPlayground:
     def configure(self):
         """Configures Django with the settings."""
 
-        conf.settings.configure(**self.settings)
+        django_conf_settings.configure(**self.settings)
 
     def runserver(self, *, port: int = 8000):
         """Starts the dev server.
