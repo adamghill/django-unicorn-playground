@@ -2,6 +2,8 @@
 
 The `Unicorn Playground` provides a way to prototype and debug [`Unicorn`](https://www.django-unicorn.com) components without creating a complete Django application. It can either be run as a standalone script or by installing the library.
 
+https://github.com/user-attachments/assets/43533156-deba-4cc1-811b-045115054c73
+
 ## Standalone script
 
 The benefit of the standalone script is that [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) provides the information for `pipx` to create a virtual environment and install any dependencies automatically.
