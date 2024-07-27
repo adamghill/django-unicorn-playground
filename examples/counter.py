@@ -1,13 +1,11 @@
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#   "django_unicorn_playground @ file:///Users/adam/Source/adamghill/django-unicorn-playground/dist/django_unicorn_playground-0.1.0-py3-none-any.whl"
+#   "django_unicorn_playground"
 # ]
 # ///
 
 from django_unicorn.components import UnicornView
-
-from django_unicorn_playground import UnicornPlayground
 
 
 class CounterView(UnicornView):
@@ -31,4 +29,6 @@ class CounterView(UnicornView):
 
 
 if __name__ == "__main__":
+    from django_unicorn_playground import UnicornPlayground
+
     UnicornPlayground(__file__).runserver()

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-unicorn-playground"
-version = "0.1.0"
+version = "0.1.1"
 description = "Prototype and debug `Unicorn` components without creating a complete Django application."
 authors = ["adamghill <adamghill@yahoo.com>"]
 license = "MIT"
@@ -17,9 +17,10 @@ packages = [
 "Funding" = "https://github.com/sponsors/adamghill"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 click = "^8.1.7"
-django-unicorn = { path = "../django-unicorn/", develop = true }
+#django-unicorn = { path = "../django-unicorn/", develop = true }
+django-unicorn = ">=0.61.0"
 typeguard = "^4.3"
 rich-click = "^1.8"
 
