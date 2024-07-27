@@ -4,14 +4,14 @@ The `Unicorn Playground` provides a way to prototype and debug [`Unicorn`](https
 
 https://github.com/user-attachments/assets/43533156-deba-4cc1-811b-045115054c73
 
-## Standalone script
+## Standalone
 
-The benefit of the standalone script is that [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) provides the information for `pipx` to create a virtual environment and install any dependencies automatically.
+A python script runner, like `pipx`, can create the virtual environment and install dependencies automatically. [Inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) provides the required dependency information for `pipx`.
 
 ### Create an example component
 
 1. Install [`pipx`](https://pipx.pypa.io/latest/installation/)
-2. Create a new file called `counter.py` with the following code
+2. Create a new file called `counter.py` with the following code:
 
 ```python
 # /// script
@@ -51,9 +51,21 @@ if __name__ == "__main__":
 3. `pipx run counter.py`
 4. Go to https://localhost:8000
 
-## Library CLI
+### Python script runners
 
-The `django-unicorn-playground` library can also be installed to provide a command-line interface to try a component. This approach uses basically the same code, but doesn't require the script inline metadata or the call to `runserver` at the end -- the CLI takes care of running the development server directly. Those portions can be included, though, and will not prevent the CLI from working as expected.
+`pipx` is officially supported, but some other script runners should also work.
+
+#### [pip-run](https://github.com/jaraco/pip-run)
+
+`pip-run counter.py`
+
+#### [fades](https://github.com/PyAr/fades)
+
+`fades -d django-unicorn-playground counter.py`
+
+## CLI
+
+The `django-unicorn-playground` library can also be installed and provides a command-line interface. This approach doesn't require the script inline metadata or the check for `__name__` -- the CLI takes care of running the development server directly.
 
 ### Create an example component
 
@@ -86,33 +98,33 @@ class CounterView(UnicornView):
 3. `unicorn counter.py`
 4. Go to https://localhost:8000
 
-### Command-line options
+### Arguments
 
-#### port
+#### component
 
-Port for the developer webserver. Defaults to 8000. Required to be an integer.
+The path to the component. Required.
 
-#### template_dir
+#### --port
+
+Port for the developer webserver. Required to be an integer. Defaults to 8000.
+
+#### --template_dir
 
 Directory for templates. Required to be a string path.
 
-#### version
+#### --version
 
 Shows the current version.
 
-#### help
+#### --help
 
 Show the available CLI options.
 
 ## Example components
 
-There are a few example components in the `examples` directory.
-
-They can be run with something like `pipx run --no-cache examples/counter.py`.
+There are a few example components in the `examples` directory. They can be run with something like `pipx run --no-cache examples/counter.py`.
 
 ## Template HTML
-
-The component's HTML can be initialized in a few ways.
 
 ### UnicornView.template_html attribute
 
@@ -135,7 +147,7 @@ class TestView(UnicornView):
     ...
 ```
 
-### UnicornView.template_html method
+### UnicornView.template_html(self)
 
 The HTML can be returned from a `template_html` instance method.
 
@@ -159,7 +171,7 @@ class TestView(UnicornView):
 
 ### HTML file
 
-Similar to a typical `django-unicorn` setup, the component HTML can be a separate template file. This is the fallback and will only be searched for if the `template_view` field or method is not defined on the component.
+Similar to a typical `django-unicorn` setup, the component HTML can be in a separate template file. This file will be looked for if `template_html` is not defined on the component.
 
 1. `cd` to the same directory as the component Python file you created
 2. `mkdir -p templates/unicorn`
@@ -168,7 +180,7 @@ Similar to a typical `django-unicorn` setup, the component HTML can be a separat
 
 ### Template directory
 
-By default `django-unicorn-playground` will look in a `templates/unicorn` folder for templates. The template location can be changed by passing in `template_dir` into the `UnicornPlayground()` constructor or adding a `--template_dir` argument to the CLI.
+By default `django-unicorn-playground` will look in the `templates/unicorn` folder for templates. The template location can be changed by passing in a `template_dir` kwarg into the `UnicornPlayground()` constructor or using a `--template_dir` argument to the CLI.
 
 ### index.html
 
@@ -185,11 +197,26 @@ It can be overridden by creating a custom `index.html` in the template directory
 
 ### base.html
 
-By default, `index.html` extends `base.html`. It can be overridden by creating a custom `base.html` in the template directory.
+By default, `index.html` extends [`base.html`](https://github.com/adamghill/django-unicorn-playground/blob/main/src/django_unicorn_playground/templates/base.html). It looks something like the following.
+
+```html
+<html>
+
+<head>
+  {% unicorn_scripts %}
+</head>
+
+{% block content %}
+{% endblock content %}
+
+</html>
+```
+
+It can be overridden by creating a custom `base.html` in the template directory.
 
 ## Using a Python HTML builder
 
-Any Python library that generates normal HTML strings works great with `django-unicorn-playground`.
+Any Python library that generates HTML strings works great with `django-unicorn-playground`.
 
 ### [haitch](https://pypi.org/project/haitch/)
 
@@ -283,7 +310,7 @@ This is how it would work with the helper methods:
 
 ## Local development
 
-### Standalone script
+### Standalone
 
 Using the inline script metadata with `pipx` seems a little quirky and I could not get editable installs working reliably. I also tried `hatch run` which had its own issues. Not sure if there are other (read: better) approaches.
 
